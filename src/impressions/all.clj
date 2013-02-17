@@ -13,3 +13,7 @@
 
   (make-impression threads-of-doom))
 
+(defn -main
+  [& _]
+
+  (dorun (make-all-impressions)))

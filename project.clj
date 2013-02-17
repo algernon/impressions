@@ -5,4 +5,7 @@
             :url "http://creativecommons.org/licenses/by-sa/3.0/"
             :distribution :repo}
   :dependencies [[org.clojure/clojure "1.4.0"]
-                 [org.clojars.algernon/impressive-hiccups "0.1.0-SNAPSHOT"]])
+                 [org.clojars.algernon/impressive-hiccups "0.1.0-SNAPSHOT"]]
+  :aot [impressions.all]
+  :main impressions.all
+  :aliases {"impress" ["run"]})
