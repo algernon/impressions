@@ -260,9 +260,24 @@
                                 :y 420
                                 :scale 0.5625}
                                (slide {:id "agents"}
-                                      (fh1 {:class "largest"} "Agents")))
-                        )))
-   
+                                      (fh1 {:class "largest"} "Agents"))
+                               (group
+                                {:scale 0.75
+                                 :x -100
+                                 :y 100}
+                                (slide {}
+                                       [:p "Asynchronous"])
+                                (slide {:y 60}
+                                       [:p "Uncoordinated"])
+                                (slide {:y 120}
+                                       [:p "I/O safe & STM aware"])
+                                (slide {:y 180}
+                                       [:p "non-blocking deref"])))))
+          (group
+           {:y 1600}
+           (slide {:id "reftype-demo"}
+                  (fh1 {:class "largest"} "DEMO!"))))
+          ;
    ;; ==
    (group
     {:x -3000 :y 100
