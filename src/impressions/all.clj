@@ -1,5 +1,6 @@
 (ns impressions.all
-  (:use [impressions.threads-of-doom]))
+  (:use [impressions.threads-of-doom]
+        [impressions.balabit-lll-20130219]))
 
 (defmacro make-impression
   [source]
@@ -11,7 +12,8 @@
 (defn make-all-impressions
   []
 
-  (make-impression threads-of-doom))
+  (make-impression threads-of-doom)
+  (make-impression balabit-lll-20130219))
 
 (defn -main
   [& _]
