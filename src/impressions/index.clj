@@ -27,4 +27,11 @@
      (slide
       {:id "threads-of-doom"
        :x 500}
-      (fh2 (link-to "../threads-of-doom/" "Threads of Doom")))))))
+      (fh2 (link-to "../threads-of-doom/" "Threads of Doom")))
+
+     (slide
+      {:id "gyaszbeszed-az-objektumok-felett"
+       :x 0
+       :y 160}
+      (fh2 (link-to "../gyaszbeszed-az-objektumok-felett/"
+                    "Gyászbeszéd az objektumok felett")))))))
