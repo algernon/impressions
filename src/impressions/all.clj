@@ -2,7 +2,8 @@
   (:use [impressions.threads-of-doom]
         [impressions.balabit-lll-20130219]
         [impressions.index]
-        [impressions.gyaszbeszed-az-objektumok-felett]))
+        [impressions.gyaszbeszed-az-objektumok-felett]
+        [impressions.makro-magia]))
 
 (defmacro make-impression
   [source]
@@ -17,6 +18,7 @@
   (make-impression threads-of-doom)
   (make-impression balabit-lll-20130219)
   (make-impression gyaszbeszed-az-objektumok-felett)
+  (make-impression makro-magia)
 
   (make-impression index))
 
