@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8" viewport="width=1024"><title>Makro mágia</title><link href="css/main.css" rel="stylesheet"><link href="http://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet"></head><body><div class="fallback-message"><p>Your browser <strong>doesn't support the features required</strong> by impress.js, so you are preseqnted with a simplified version of this presentation.</p><p>For the best experience please use the latest<strong>Chrome</strong>, <strong>Safari</strong> or <strong>Firefox</strong> browser.</p></div><div id="impress"><div class="step" data-rotate="0" data-scale="1" data-x="0" data-y="0" id="title"><h1 data-highlight="first-letter">Makro mágia</h1><br><a href="https://twitter.com/algernoone">@algernoone</a><span style="float:right;">BalaBit</span></div><div class="step" data-rotate="0" data-scale="1" data-x="0" data-y="1000" id="code-is"><h1 class="xx-large" data-highlight="first-letter">Code is</h1></div><div class="step" data-rotate="0" data-scale="1" data-x="0" data-y="2000" id="code-is-data-1"><img src="img/data.jpg"></div><div class="step" data-rotate="0" data-scale="1" data-x="0" data-y="3000" id="code-is-data-2"><h1 class="xx-large" data-highlight="first-letter">Code is data</h1></div><div class="step" data-rotate="0" data-scale="1" data-x="2000" data-y="0" id="wtf-for"><h1 data-highlight="first-letter">Mire jó a makró?</h1></div><div class="step" data-rotate="270" data-scale="1" data-x="2000" data-y="0" id="szintaxis"><h2 data-highlight="first-letter">Új szintaxis</h2></div><div class="step" data-rotate="270" data-scale="1" data-x="2120" data-y="0" id="p195">-></div><div class="step" data-rotate="270" data-scale="1" data-x="2380" data-y="0" id="p196"><pre>(defmacro ->
+  ([x] x)
+  ([x form]
+    (if (seq? form)
+      `(~(first form) ~x ~@(next form))
+      (list form x)))
+  ([x form & more]
+    `(-> (-> ~x ~form) ~@more)))</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2380" data-y="-1000" id="p197"><pre>(-> 1)</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2380" data-y="-1300" id="p198"><pre>;=> 1</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2460" data-y="-1000" id="p199"><pre>(-> 1
+    str)</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2460" data-y="-1300" id="p200"><pre>;=> (str 1)</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2560" data-y="-1000" id="p201"><pre>(-> 1
+    (+ 2))</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2560" data-y="-1300" id="p202"><pre>;=> (+ 1 2)</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2700" data-y="-1000" id="p203"><pre>(-> 1
+    (+ 2)
+    (* 3))</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2700" data-y="-1300" id="p204"><pre>;=> (-> (-> 1 (+ 2)) (* 3))</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2700" data-y="-2000" id="p205"><pre>;=> (-> (+ 1 2) (* 3))</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="2700" data-y="-2600" id="p206"><pre>;=> (* (+ 1 2) 3)</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="3000" data-y="0" id="kenyelem"><h2 data-highlight="first-letter">Kényelem</h2></div><div class="step" data-rotate="270" data-scale="1" data-x="3120" data-y="0" id="p208">with-open</div><div class="step" data-rotate="270" data-scale="1" data-x="3500" data-y="0" id="p209"><pre style="font-size: 60%">(defmacro with-open
+  [bindings & body]
+  (assert-args
+     (vector? bindings) "a vector for its binding"
+     (even? (count bindings)) "an even number of forms in binding vector")
+  (cond
+    (= (count bindings) 0) `(do ~@body)
+    (symbol? (bindings 0)) `(let ~(subvec bindings 0 2)
+                              (try
+                                (with-open ~(subvec bindings 2) ~@body)
+                                (finally
+                                  (. ~(bindings 0) close))))
+    :else (throw (IllegalArgumentException.
+                   "with-open only allows Symbols in bindings"]))))
+</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="3500" data-y="-1500" id="with-open-example"><pre>(with-open [foo (File. "/tmp/foo")]
+  (do-something-with foo))</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="3500" data-y="-2500" id="p211"><pre>=></pre></div><div class="step" data-rotate="270" data-scale="1" data-x="3500" data-y="-3000" id="p212"><pre>(let [foo (File. "/tmp/foo")]
+  (try
+    (do (do-something-with foo))
+    (finally (. foo close))))</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="4000" data-y="0" id="dynamic-binding"><h2 data-highlight="first-letter">Dinamimus kötés</h2></div><div class="step" data-rotate="270" data-scale="1" data-x="4120" data-y="0" id="p214">with-base-url</div><div class="step" data-rotate="270" data-scale="1" data-x="4500" data-y="0" id="p215"><pre>(def ^:dynamic *base-url* nil)
+
+(defmacro with-base-url
+  [base-url & body]
+  `(binding [*base-url* ~base-url]
+     ~@body))
+
+(defn to-url
+  [uri]
+
+  (str *base-url* "/" uri)) </pre></div><div class="step" data-rotate="270" data-scale="1" data-x="5500" data-y="0" id="syntsugar"><h2 data-highlight="first-letter">Szintaktikai cukorka</h2></div><div class="step" data-rotate="270" data-scale="1" data-x="5620" data-y="0" id="p217">or, cond</div><div class="step" data-rotate="270" data-scale="1" data-x="5900" data-y="0" id="p218"><pre>(defmacro or
+  ([] nil)
+  ([x] x)
+  ([x & next]
+      `(let [or# ~x]
+         (if or# or# (or ~@next)))))</pre></div><div class="step" data-rotate="270" data-scale="1" data-x="6400" data-y="0" id="p219"><pre style="font-size: 70%;">(defmacro cond
+  [& clauses]
+    (when clauses
+      (list 'if (first clauses)
+            (if (next clauses)
+                (second clauses)
+                (throw (IllegalArgumentException.
+                         "cond requires an even number of forms")))
+            (cons 'clojure.core/cond (next (next clauses))))))</pre></div><div class="step" data-rotate="45" data-scale="1" data-x="219000" data-y="0" id="Q&amp;A"><h1 class="largest">Q&A</h1></div></div><script src="js/impress.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+(function(window, undefined){ var _onload = window.onload;  window.onload = function() { if(_onload){ _onload(); } impress().init(); }; }(this));
+//]]></script></body></html>
