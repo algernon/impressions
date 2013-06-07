@@ -34,4 +34,11 @@
        :x 0
        :y 160}
       (fh2 (link-to "../gyaszbeszed-az-objektumok-felett/"
-                    "Gyászbeszéd az objektumok felett")))))))
+                    "Gyászbeszéd az objektumok felett")))
+
+     (slide
+      {:id "makro-magia"
+       :x -160
+       :y -320}
+      (fh2 (link-to "../makro-magia/"
+                    "Makró mágia")))))))
